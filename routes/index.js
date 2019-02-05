@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 
 const apiCtrl = require("../controllers");
+const apiCtrlDepartments = require("../controllers/departments");
+const apiCtrlPosts = require("../controllers/posts");
+const apiCtrlNames = require("../controllers/names");
 
 /**
  * @swagger
@@ -82,13 +85,33 @@ const apiCtrl = require("../controllers");
  *         description: An array of names
  *         schema:
  *           $ref: '#/definitions/names'
+ *   post:
+ *     tags:
+ *       - names
+ *     description: Creates a new name
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: tarun
+ *         description: post object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/names'
+ *     responses:
+ *       200:
+ *         description: Successfully created
  */
 // define the about route
 router
   .route("/posts")
-  .get(apiCtrl.getPosts)
-  .post(apiCtrl.postPosts);
-router.route("/departments").get(apiCtrl.getDepartments);
-router.route("/names").get(apiCtrl.getNames);
+  .get(apiCtrlPosts.getPosts)
+  .post(apiCtrlPosts.postPosts);
+router.route("/departments").get(apiCtrlDepartments.getDepartments);
+
+router
+  .route("/names")
+  .get(apiCtrlNames.getNames)
+  .post(apiCtrlNames.postNames);
 
 module.exports = router;
