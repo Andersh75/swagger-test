@@ -2,7 +2,7 @@ const express = require("express");
 const swaggerJSDoc = require("swagger-jsdoc");
 const api = require("./routes/index");
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // swagger definition
 const swaggerDefinition = {
@@ -11,7 +11,7 @@ const swaggerDefinition = {
     version: "1.0.0",
     description: "Demonstrating how to describe a RESTful API with Swagger"
   },
-  host: "localhost:3000",
+  host: "localhost:4000",
   basePath: "/"
 };
 // options for the swagger docs
