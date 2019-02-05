@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
+const apiCtrl = require("../controllers");
 /**
  * @swagger
  * definition:
@@ -31,13 +32,6 @@ var router = express.Router();
  *           $ref: '#/definitions/users'
  */
 // define the about route
-router.get("/users", function(req, res) {
-  res.send({
-    name: "Sune",
-    email: "sune@test.se",
-    age: 20,
-    sex: "m"
-  });
-});
+router.route("/users").get(apiCtrl.getUsers);
 
 module.exports = router;
