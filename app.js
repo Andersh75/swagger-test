@@ -3,6 +3,7 @@ const swaggerJSDoc = require("swagger-jsdoc");
 const api = require("./routes/index");
 const app = express();
 const port = 4000;
+var bodyParser = require("body-parser");
 
 // swagger definition
 const swaggerDefinition = {
@@ -25,6 +26,7 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 app.use(express.static("public"));
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => res.send("Hello World!"));
 

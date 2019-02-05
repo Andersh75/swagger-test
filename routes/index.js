@@ -41,6 +41,23 @@ const apiCtrl = require("../controllers");
  *         description: An array of posts
  *         schema:
  *           $ref: '#/definitions/posts'
+ *   post:
+ *     tags:
+ *       - posts
+ *     description: Creates a new post
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: tarun
+ *         description: post object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/posts'
+ *     responses:
+ *       200:
+ *         description: Successfully created
+ *
  * /api/departments:
  *   get:
  *     tags:
@@ -67,7 +84,10 @@ const apiCtrl = require("../controllers");
  *           $ref: '#/definitions/names'
  */
 // define the about route
-router.route("/posts").get(apiCtrl.getPosts);
+router
+  .route("/posts")
+  .get(apiCtrl.getPosts)
+  .post(apiCtrl.postPosts);
 router.route("/departments").get(apiCtrl.getDepartments);
 router.route("/names").get(apiCtrl.getNames);
 
