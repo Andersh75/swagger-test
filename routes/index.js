@@ -21,6 +21,11 @@ const apiCtrl = require("../controllers");
  *         type: string
  *       name:
  *         type: integer
+ *
+ *   names:
+ *     properties:
+ *       name:
+ *         type: integer
  */
 /**
  * @swagger
@@ -48,9 +53,22 @@ const apiCtrl = require("../controllers");
  *         description: An array of departments
  *         schema:
  *           $ref: '#/definitions/departments'
+ * /api/names:
+ *   get:
+ *     tags:
+ *       - names
+ *     description: Returns all names
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: An array of names
+ *         schema:
+ *           $ref: '#/definitions/names'
  */
 // define the about route
 router.route("/posts").get(apiCtrl.getPosts);
 router.route("/departments").get(apiCtrl.getDepartments);
+router.route("/names").get(apiCtrl.getNames);
 
 module.exports = router;
