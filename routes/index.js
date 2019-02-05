@@ -31,12 +31,12 @@ var router = express.Router();
  *           $ref: '#/definitions/users'
  */
 // define the about route
-router.get("/api/users", function(req, res) {
+router.get("/users", function(req, res) {
   res.send({
-    name: "name",
-    email: "email",
+    name: "Sune",
+    email: "sune@test.se",
     age: 20,
-    sex: "sex"
+    sex: "m"
   });
 });
 

@@ -1,18 +1,11 @@
-var swaggerJSDoc = require("swagger-jsdoc");
-var express = require("express");
-var app = express();
+const express = require("express");
+const swaggerJSDoc = require("swagger-jsdoc");
+const api = require("./routes/index");
+const app = express();
 const port = 3000;
 
-var api = require("./routes/index");
-
-app.use(express.static("public"));
-
-app.use("/", api);
-
-app.get("/", (req, res) => res.send("Hello World!"));
-
 // swagger definition
-var swaggerDefinition = {
+const swaggerDefinition = {
   info: {
     title: "Node Swagger API",
     version: "1.0.0",
@@ -22,14 +15,20 @@ var swaggerDefinition = {
   basePath: "/"
 };
 // options for the swagger docs
-var options = {
+const options = {
   // import swaggerDefinitions
   swaggerDefinition: swaggerDefinition,
   // path to the API docs
   apis: ["./**/routes/*.js", "routes.js"] // pass all in array
 };
 // initialize swagger-jsdoc
-var swaggerSpec = swaggerJSDoc(options);
+const swaggerSpec = swaggerJSDoc(options);
+
+app.use(express.static("public"));
+
+app.get("/", (req, res) => res.send("Hello World!"));
+
+app.use("/api", api);
 
 // serve swagger
 app.get("/swagger.json", function(req, res) {
